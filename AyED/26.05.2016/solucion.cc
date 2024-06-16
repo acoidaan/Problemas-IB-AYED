@@ -16,7 +16,7 @@ ostream& sll_t<int>::write(sll_node_t<int>* node, ostream& os) const {
   }
 }
 
-// b) (0,5 puntos) Impleméntese dos procedimientos, uno de ellos recursivo, para imprimir al revés el contenido de una lista enlazada de enteros, de acuerdo con la descripción de clases dada anteriormente.
+// b) (0,5 puntos) Impleméntese dos procedimientos, uno de ellos iterativo, para imprimir al revés el contenido de una lista enlazada de enteros, de acuerdo con la descripción de clases dada anteriormente.
 template <>
 ostream& sll_t<int>::write(ostream& os) const {
   write(head_, os);
@@ -147,7 +147,7 @@ double scalprod(const vector_pair_t& a, const vector_t& b) {
   double scalp = 0.0;
 
   for (int i = 0; i < a_sz; i++) {
-    scalp += a.get_v(i).get_val() * b.get_val(v_get(i).get_inx());
+    scalp += a.get_v(i).get_val() * b.get_val(get_v(i).get_inx());
   }
   return scalp;
 }
