@@ -3,7 +3,6 @@
 using namespace std;
 
 using pair_vector_t = vector_t<pair_double_t>;
-
 template <class T> class dll_node_t {
  public:
   dll_node_t();
