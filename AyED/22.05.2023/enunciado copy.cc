@@ -1,5 +1,5 @@
 #include <iostream>
-
+using namespace std;
 template <class T>
 class sll_t {
  private:
@@ -129,8 +129,8 @@ void sll_union(const sll_t<int>& A, const sll_t<int>& B, sll_t<int>& C) {
   while(ptr != NULL) {
     if (B.search(ptr->get_data())) {
       C.insert_head(new sll_node_t<int>(ptr->get_data()));
-      ptr = ptr->get_next();
     }
+    ptr = ptr->get_next();
   }
   ptr = B.get_head();
   while (ptr != NULL) {

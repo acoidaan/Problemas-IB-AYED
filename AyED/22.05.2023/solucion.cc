@@ -1,15 +1,5 @@
 // EJERCICIO 1. Se solicita crear una nueva clase template Pila llamada template<class T> class stack_sll_t que contenga lo siguiente:
 
-// (a) Atributo  privado de la clase para implementar una pila mediante una sll_t
-
-// (b) Método Push
-
-// (c) Método Pop
-
-// (d) Método Top
-
-// (e) Método Empty
-
 #include <iostream>
 
 template <class T>
@@ -55,31 +45,36 @@ class sll_node_t {
 };
 
 // Solución
-template<class T> 
+
+// (a) Atributo  privado de la clase para implementar una pila mediante una sll_t
+template <class T>
 class stack_sll_t {
  private:
   sll_t<T> l_;
 
-  template<class T> void stack_sll_t<T>::push(const T& dato) {
-    sll_node_t<T>* nodo = new sll_node_t<T>(dato);
-    assert(dato!=NULL);
-    l_.insert_head(nodo);
-  }
+// (b) Método Push
+template <class T> void stack_sll_t<T>::push(const T& dato) {
+  sll_node_t* nodo = new sll_node_t<T>(dato);
+  assert (dato != NULL);
+  l_.insert_head(nodo);
+}
 
-  template<class T> void stack_sll_t<T>::pop(void) {
-    assert(!empty());
-    delete l_.extract_head();
-  }
+// (c) Método Pop
+template <class T> void stack_sll_t<T>::pop(void) {
+  assert (!empty());
+  delete l_.extract_head();
+}
 
-  template<class T> void stack_sll_t<T>::top(void) const {
-    assert(!empty());
-    return l_.get_head()->get_data();
-  }
+// (d) Método Top
+template <class T> T& stack_sll_t<T>::top(void) const {
+  assert (!empty());
+  return l_.get_head()->get_data();
+}
 
-  template(class T> void stack_sll_t<T>::empty(void) const {
-    return l_.empty();
-  })
-};
+// (e) Método Empty
+template <class T> bool stack_sll_t<T>::empty(void) const {
+  return l_.empty();
+}};
 
 // EJERCICIO 2. Se tiene un programa principal que utiliza una pila stack  P. Utilizando sólo los métodos propios de una pila, desarrolla una función recursiva llamada sumaElementos que reciba por parámetros una pila y sume los elementos de la misma de forma recursiva.
 
@@ -133,21 +128,18 @@ int sumaElementos(stack_t<int>& p) {
 // que realiza la unión (tipo conjunto) de dos listas no ordenadas A y B con elementos no repetidos, y devuelve el resultado en la lista C.
 
 // Por ejemplo, si A={2,1,4,3} y B={1,5,3,6}, el resultado sería C={6,3,5,1,4,2}.
-
 void sll_union(const sll_t<int>& A, const sll_t<int>& B, sll_t<int>& C) {
-  sll_node_t<int> *ptr = A.get_head();
-  // Inserta en C todos los elementos que no están en B
-  while (ptr != NULL) {
-    if (B.search(ptr->get_data()) == NULL) {
-      C.insert_head(new sll_node_t<int>(ptr->get_data()));
-      ptr = ptr->get_next();
+  sll_node_t<int>* aux = A.get_head();
+  while (aux != NULL) {
+    if (B.search(aux->get_data()) == NULL) {
+      C.insert_head(new sll_node_t<int>(aux->get_data()));
     }
-    // Inserta en C todos los elementos de B
-    ptr = B.get_head();
-    while (ptr != NULL) {
-      C.insert_head(new sll_node_t<int>(ptr->get_data()));
-      ptr = ptr->get_next();
-    }
+    aux = aux->get_next();
+  }
+  aux = B.get_head();
+  while (aux != NULL) {
+    C.insert_head(new sll_node_t<int>(aux->get_data()));
+    aux = aux->get_next();
   }
 }
 
@@ -192,8 +184,19 @@ class queue_t {
 //////////////////////////////////////////////
 // ESTO ES PARA QUE NO DE ERRORES EN EL VSCODE
 //////////////////////////////////////////////
+// template <class T>
+// void to_base(const unsigned n, const unsigned short b, queue_t<unsigned>& q) {
+//   queue_t<T> q;
+//   if (n < b) q.push(n);
+//   else {
+//     to_base (n / b, b, q);
+//     q.push(n % b);
+//   }
+// }
 
+template <class T>
 void to_base(const unsigned n, const unsigned short b, queue_t<unsigned>& q) {
+  queue_t<T> q;
   if (n < b) q.push(n);
   else {
     to_base(n / b, b, q);
@@ -210,12 +213,11 @@ void to_base(const unsigned n, const unsigned short b, queue_t<unsigned>& q) {
 //////////////////////////////////////////////
 template <class T>
 class block_t {
-  
+  block_t op1(const block_t A, const block_t B, const block_t C) {
+    return ((A & C) | (A & B) | (B & C) & ~(A & B & C));
+  }
 };
 //////////////////////////////////////////////
 // ESTO ES PARA QUE NO DE ERRORES EN EL VSCODE
 //////////////////////////////////////////////
 
-block_t op1(const block_t A, const block_t B, const block_t C) {
-  return ((A & C) | (A & B) | (B & C)) & ~(A &(B & C));
-}
