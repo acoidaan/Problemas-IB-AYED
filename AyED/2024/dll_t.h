@@ -38,6 +38,9 @@ template <class T> class dll_t {
   dll_node_t<T>* pop_back(void);
   dll_node_t<T>* pop_front(void);
 
+  // Junio 2024
+  dll_t<int> suma(dll_t<int>& A, dll_t<int>& B);
+
   dll_node_t<T>* erase(dll_node_t<T>*);
 
   // E/S
@@ -156,6 +159,32 @@ template <class T> std::ostream& dll_t<T>::write(std::ostream& os) const {
     aux = aux->get_next();
   }
   return os;
+}
+
+// Junio 2024
+dll_t<int> dll_t<int>::suma(dll_t<int>& A, dll_t<int>& B) {
+  dll_t<int> result;
+  dll_node_t<int>* nodo_A = A.get_tail();
+  dll_node_t<int>* nodo_B = B.get_tail();
+  int carry = 0;
+
+  while (nodo_A != NULL || nodo_B != NULL || carry != 0) {
+    int sum = carry;
+    if (nodo_A != NULL) {
+      sum += nodo_A->get_data();
+      nodo_A = nodo_A->get_next();
+    }
+
+    if (nodo_B != NULL) {
+      sum += nodo_B->get_data();
+      nodo_B = nodo_B->get_next();
+    }
+
+    carry = sum / 10; // Ajustar el carry
+    dll_node_t<int>* aux = new dll_node_t<int>(sum % 10);
+    result.push_front(aux);
+  }
+  return result;
 }
 
 #endif  // DLLT_H_

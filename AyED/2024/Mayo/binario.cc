@@ -31,7 +31,7 @@ void generate_all(void)  {
 const char ALPHABET[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 const int ALPHABET_size = (int)sizeof(ALPHABET) - 1;
 
-void hacking(vector<char>& pw, const int i = 0) {
+void hacking(vector<char>& pw, int i = 0) {
   if (i = pw.size()) {
     cout << pw << " ";
   } else {

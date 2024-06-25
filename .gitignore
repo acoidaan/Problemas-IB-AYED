@@ -35,4 +35,4 @@
 settings.json
 launch.json
 c_cpp_properties.json
-.vscode
+.vscode/

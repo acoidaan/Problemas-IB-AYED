@@ -42,6 +42,25 @@ template <class T> class sll_t {
 
   // E/S
   std::ostream& write(std::ostream& = std::cout) const;
+  // Junio 2024
+  // para destructor recursivo 
+  void destroy(sll_node_t<T>* node);
+  // invertir sll sin estructura auxiliar y recursiva
+  void reverse_helper(sll_node_t<T>* current, sll_node_t<T>*);
+  void reverse(void);
+  // void reverse_helper(sll_node_t<T>* current, sll_node_t<T>* prev) {
+  //   if (current == NULL) {
+  //     head_ = prev;
+  //     return;
+  //   }
+  //   reverse_helper(current->get_next(), current);
+  //   current->set_next(prev);
+  // }
+
+  // void reverse(void) {
+  //   reverse_helper(head_, NULL);
+  // }
+
 
  private:
   sll_node_t<T>* head_;
@@ -49,11 +68,31 @@ template <class T> class sll_t {
 
 
 // destructor
+// template <class T> sll_t<T>::~sll_t(void) {
+//   while (!empty()) {
+//     sll_node_t<T>* aux = head_;
+//     head_ = head_->get_next();
+//     delete aux;
+//   }
+// }
+
+// destructor recursivo
 template <class T> sll_t<T>::~sll_t(void) {
-  while (!empty()) {
-    sll_node_t<T>* aux = head_;
-    head_ = head_->get_next();
-    delete aux;
+  destroy(head_);
+}
+
+// auxiliar para ardestructor recursivo 
+template <class T> void sll_t<T>::destroy(sll_node_t<T>* node) {
+  if (node != NULL) {
+    destroy(node->get_next());
+    delete node;
+  }
+}
+ 
+template <class T> sll_t<T>::~sll_t(void) {
+  if (this == NULL) return;
+  else ~sll_t(this->get_next()) {
+    delete this;
   }
 }
 
