@@ -76,7 +76,7 @@ dll_t<int> dll_t<T>::suma(dll_t<int>& A, dll_t<int>& B) {
 }
 
 
-// 4 iterativa
+// 4 Esperando a las soluciones del profe
 
 // 5
 bool isBalanced(const string& cadena) {
