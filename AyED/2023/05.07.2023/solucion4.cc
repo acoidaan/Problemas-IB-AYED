@@ -1,9 +1,9 @@
 #include <iostream>
 #include <cassert>
+#include "../2024/Junio/enunciado.cc"
 using namespace std;
 
 using pair_vector_t = vector_t<pair_double_t>;
-
 template <class T> class dll_node_t {
  public:
   dll_node_t();
@@ -80,6 +80,8 @@ template <class T> class pair_t {
   int inx_;
 };
 
+
+
 // EJERCICIO 1. Implementar el operador * que devuelve el producto escalar de dos vectores dispersos (sparse_vector_t), con la siguiente cabecera:
 
 // double operator*(const sparse_vector_t& a, const sparse_vector_t& b)
@@ -132,20 +134,20 @@ void hacking(vector<char>& pw, const int i = 0) {
 
 // template<> bool matrix_t<int>::is_estocastica(void);
 // que determina si una matriz cuadrada, es estocástica o no, es decir, si no tiene valores negativos y la suma de cada columna es 1.
-
+int TAM = 3;
+matrix_t<int> M;
 template <> bool matrix_t<int>::is_estocastica(void) {
   int estocastica = 1, suma, i, j;
   for (int i = 0; i < TAM; i++) {
     for (int j = 0; j < TAM; j++) {
-      if (M[i][j] < 0) estocastica = 0;
+      if (M.at(i, j) < 0) estocastica = 0;
     }
   }
-  // No es negativa, entonces =>
   if (estocastica) {
-    for (i = 0; i < TAM; i++) {
+    for (int i = 0; i < TAM; i++) {
       suma = 0;
-      for (j = 0; j < TAM; j++) {
-        suma += M[j][i];
+      for (int j = 0; j < TAM; j++) {
+        suma += M.at(j, i);
       }
       if (suma != 1) estocastica = 0;
     }
@@ -166,26 +168,27 @@ bool is_palindrome(const vector_t<char>& s, const int i, const int d) {
 
 // void merge(dll_t<int>& L1, dll_t<int>& L2, dll_t<int>& R)
 // que fusiona dos listas de enteros L1 y L2, y devuelve el resultado en R, estando las tres listas ordenadas de menor a mayor.
+
 void merge(dll_t<int>& L1, dll_t<int>& L2, dll_t<int>& R) {
   dll_node_t<int> *ptr1 = L1.get_head(), *ptr2 = L2.get_head();
-  
+
   while (ptr1 != NULL && ptr2 != NULL) {
     if (ptr1->get_data() <= ptr2->get_data()) {
-      R.insert_tail(new dll_node_t<int>(ptr1->get_data()));
+      R.push_back(new dll_node_t<int>(ptr1->get_data()));
       ptr1 = ptr1->get_next();
     } else if (ptr1->get_data() > ptr2->get_data()) {
-        R.insert_tail(new dll_node_t<int>(ptr2->get_data()));
-        ptr2 = ptr2->get_next();
+      R.push_back(new dll_node_t<int>(ptr2->get_data()));
+      ptr2 = ptr2->get_next();
     }
   }
+
   while (ptr1 != NULL) {
-    R.insert_tail(new dll_node_t<int>(ptr1->get_data()));
+    R.push_back(new dll_node_t<int>(ptr1->get_data()));
     ptr1 = ptr1->get_next();
   }
+
   while (ptr2 != NULL) {
-    R.insert_tail(new dll_node_t<int>(ptr2->get_data()));
+    R.push_back(new dll_node_t<int>(ptr2->get_data()));
     ptr2 = ptr2->get_next();
   }
 }
-
-  

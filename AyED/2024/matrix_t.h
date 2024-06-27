@@ -44,6 +44,8 @@ public:
   void write(ostream& = cout) const;
   void read(istream& = cin);
 
+  bool is_estocastica(void)
+
 private:
   int m_, n_; // m_ filas y n_ columnas
   vector_t<T> v_;
