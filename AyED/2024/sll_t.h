@@ -23,6 +23,7 @@ template <class T> class sll_t {
 
   // destructor
   ~sll_t(void);
+  void destroy_(sll_node_t<T>* p);
 
   // getters
   sll_node_t<T>* get_head(void) const { return head_; };
@@ -46,21 +47,7 @@ template <class T> class sll_t {
   // para destructor recursivo 
   void destroy(sll_node_t<T>* node);
   // invertir sll sin estructura auxiliar y recursiva
-  void reverse_helper(sll_node_t<T>* current, sll_node_t<T>*);
-  void reverse(void);
-  // void reverse_helper(sll_node_t<T>* current, sll_node_t<T>* prev) {
-  //   if (current == NULL) {
-  //     head_ = prev;
-  //     return;
-  //   }
-  //   reverse_helper(current->get_next(), current);
-  //   current->set_next(prev);
-  // }
-
-  // void reverse(void) {
-  //   reverse_helper(head_, NULL);
-  // }
-
+  void reverse(sll_node_t<T>* p);
   void erase_evens(void)
 
 
