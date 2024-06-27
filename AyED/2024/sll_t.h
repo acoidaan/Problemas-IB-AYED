@@ -61,6 +61,8 @@ template <class T> class sll_t {
   //   reverse_helper(head_, NULL);
   // }
 
+  void erase_evens(void)
+
 
  private:
   sll_node_t<T>* head_;
