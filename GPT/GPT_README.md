@@ -9,7 +9,7 @@
 
 ### 1. Insertar nodo en una lista enlazada
 
-- [ ] Escribe una función para insertar un nodo en una lista enlazada simple en una posición específica. La función debe tener la siguiente cabecera:
+- [x] Escribe una función para insertar un nodo en una lista enlazada simple en una posición específica. La función debe tener la siguiente cabecera:
 
 ```cpp
   template <class T>

@@ -1,4 +1,4 @@
-#include "../AyED/2024/Junio/enunciado.cc"
+#include "../../../AyED/2024/Junio/enunciado.cc"
 using namespace std;
 
 // auxiliar para insertar head
