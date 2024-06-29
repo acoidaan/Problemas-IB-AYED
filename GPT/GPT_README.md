@@ -18,7 +18,7 @@
 
 ### 2. Recorrer una matriz en espiral
 
-- [ ] Escribe una función que recorra una matriz en espiral y devuelva los elementos en un vector. La función debe tener la siguiente cabecera:
+- [x] Escribe una función que recorra una matriz en espiral y devuelva los elementos en un vector. La función debe tener la siguiente cabecera:
 
 ```cpp
   template <class T>
