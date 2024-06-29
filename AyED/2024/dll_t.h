@@ -46,6 +46,8 @@ template <class T> class dll_t {
   // E/S
   std::ostream& write(std::ostream& = std::cout) const;
 
+  dll_node_t<int>* find(const int v);
+
  private:
   dll_node_t<T>* head_;
   dll_node_t<T>* tail_;

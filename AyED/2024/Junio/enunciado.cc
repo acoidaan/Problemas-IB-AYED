@@ -11,129 +11,15 @@
 #include "../stack_l_t.h"
 #include "../stack_v_t.h"
 
-// 1. Destructor recursivo sll
-// 2. Dar la vuelta a una sll de manera recursiva
-// 3. Un método con 3 listas dll que hiciera una suma de toda la vida con acarreo
-// 4. Búsqueda binaria recursiva/iterativa (no me acuerdo cual de las dos) pero la lista no está ordenada
-// 5. Ver si una cadena de ([{}]) está balanceada con LIFO
-// 6. Diseñar clase vector dual
+// 1. Desarrollar el destructor de la lista sll_t de forma recursiva implementando un método privado void sll_t<T>::destroy_(sll_node_t<T>*) que será llamado por el destructor:
+// 2. Dentro de la clase sll_t<T>, desarrollar de forma recursiva el siguiente método que invierte los elementos sobre la misma lista, sin usar estructuras auxiliares. Por ejemplo, dada la lista [1]→[2]→[3]→[4]–||, el resultado esperado sería [4]→[3]→[2]→[1]–||.
+// 3. Desarrollar el procedimiento que sume dos números enteros positivos representados en las listas A y B de la clase dll_t<unsigned>, y devuelva el resultado en la lista C. Por ejemplo:
+// 4. Considérese el problema de determinar si una cadena de paréntesis, corchetes y llaves está o no balanceada. Impleméntese una función booleana que determine si una cadena de caracteres, en términos de un tipo string o un vector de caracteres, conteniendo únicamente los símbolos ()[]{} está balanceada o no. Para tal fin, debe hacerse uso de una estructura de datos con organización LIFO.
+// 5. Impleméntese el método int rsearch(int i, int d, const T& x) de la clase vector_t anteriormente especificada, que efectúa la búsqueda lineal recursiva en un vector no ordenado, devolviendo la posición del elemento encontrado y -1 si no lo encuentra.
+// 6. Diseñar e implementar una clase, que denominaremos vector_t, que simule el comportamiento de un vector, del tipo especificado por una plantilla, indexado dentro del rango especificado en la definición del objeto. En el siguiente ejemplo se puede apreciar la creación de los objetos v y w, indexados en los rangos especificados en el constructor.
 
-// 1
-template <class T>
-sll_t<T>::~sll_t(void) {
-  destructor(head_);
-}
+// a) Diseñe la clase vector_t, a partir de los atributos necesarios para el almacenamiento de los datos y el acceso correcto a los mismos utilizando los índices en el rango apropiado.
 
-template <class T>
-void sll_t<T>::destroy(sll_node_t<T>* node) {
-  if (node != NULL) {
-    destroy(node->get_next());
-    delete node;
-  }
-}
+// b) Implemente el constructor, el método constante size(), que devuelve el tamaño del vector, la función de acceso at(i), que devuelve una referencia al elemento correspondiente al índice i.
 
-// 2
-template <class T>
-void sll_t<T>::reverse(void) {
-  reverse_helper(head_, NULL);
-}
-
-template <class T>
-void sll_t<T>::reverse_helper(sll_node_t<T>* current, sll_node_t<T>* prev) {
-  if (current == NULL) {
-    head_ = prev;
-    return;
-  } else {
-    reverse_helper(current->get_next(), current);
-    current->set_next(prev);
-  }
-}
-
-// 3
-template <class T>
-dll_t<int> dll_t<T>::suma(dll_t<int>& A, dll_t<int>& B) {
-  int carry = 0;
-  dll_node_t<int>* nodo_a = A.get_tail();
-  dll_node_t<int>* nodo_b = B.get_tail();
-  dll_t<int> result;
-
-  while (nodo_a != NULL || nodo_b != NULL || carry != 0) {
-    int sum = carry;
-    if (nodo_a != NULL) {
-      sum += nodo_a->get_data();
-      nodo_a = nodo_a->get_next();
-    }
-
-    if (nodo_b != NULL) {
-      sum += nodo_b->get_data();
-      nodo_b = nodo_b->get_next();
-    }
-
-    carry = sum / 10;
-    result.push_front(new dll_node_t<int>(sum % 10));
-  }
-  return result;
-}
-
-
-// 4 Esperando a las soluciones del profe
-
-// 5
-bool isBalanced(const string& cadena) {
-  stack_v_t<char> pila;
-  for (char c : cadena) {
-    if (c == '(' || c == '[' || c == '{') {
-      pila.push(c);
-    } else {
-      if (pila.empty()) return false;
-      char top = pila.top();
-      if ((c == ')' && top == '(') || (c == ']' && top == '[') || (c == '}' && top == '{')) {
-        pila.pop();
-      } else return false; 
-    }
-  }
-  return pila.empty();
-}
-
-// 6
-template <class T>
-class dual_vector {
- private:
-  T *v_;
-  int a_;
-  int b_;
- public:
-  dual_vector(const int a, const int b);
-  dual_vector(size_t sz);
-  ~dual_vector(void);
-  size_t get_sz(void) const;
-  T& at(int i);
-  const T& at(int i) const;
-};
-
-template <class T>
-dual_vector<T>::dual_vector(const int a, const int b) : v_(NULL), a_(a), b_(b) {
-  v_ = new T[set_sz()];
-}
-
-template <class T>
-dual_vector<T>::dual_vector(size_t sz) : v_(NULL), a_(a), b_(sz - 1) {
-  v_ = new T[get_size()];
-}
-
-template <class T>
-size_t dual_vector<T>::get_sz(void) const {
-  return b = -a_ - 1;
-}
-
-template <class T>
-T& dual_vector<T>::at(int i) {
-  return v_[i - a];
-}
-
-template <class T>
-dual_vector<T>::~dual_vector(void) {
-  if (v_ != NULL) {
-    delete[] v_;
-  }
-}
+// c) Implemente el método void suma(const vector_t<T> &v, const vector_t<T> &w), que hace que el vector invocante contenga la suma de los dos vectores pasado por parámetro. Nótese que dicho vector invocante deberá ser redimensionado al rango apropiado.
