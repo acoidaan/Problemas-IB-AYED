@@ -36,7 +36,7 @@
 
 ### 4. Invertir un vector usando recursión
 
-- [ ] Escribe una función recursiva que invierta un vector. La función debe tener la siguiente cabecera:
+- [x] Escribe una función recursiva que invierta un vector. La función debe tener la siguiente cabecera:
 
 ```cpp
   template <class T>
