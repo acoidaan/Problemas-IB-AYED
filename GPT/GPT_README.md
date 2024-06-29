@@ -45,7 +45,7 @@
 
 ### 5. Comprobar balanceo de paréntesis
 
-- [ ] Escribe una función que compruebe si una cadena de caracteres tiene los paréntesis balanceados. La función debe tener la siguiente cabecera:
+- [x] Escribe una función que compruebe si una cadena de caracteres tiene los paréntesis balanceados. La función debe tener la siguiente cabecera:
 
 ```cpp
   bool is_balanced(const string& expression);
