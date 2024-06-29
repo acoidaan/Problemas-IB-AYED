@@ -27,7 +27,7 @@
 
 ### 3. Fusionar dos listas dobles
 
-- [ ] Escribe una función que fusione dos listas dobles ordenadas en una nueva lista doble ordenada. La función debe tener la siguiente cabecera:
+- [x] Escribe una función que fusione dos listas dobles ordenadas en una nueva lista doble ordenada. La función debe tener la siguiente cabecera:
 
 ```cpp
   template <class T>
