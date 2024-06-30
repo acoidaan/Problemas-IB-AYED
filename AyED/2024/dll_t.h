@@ -41,12 +41,15 @@ template <class T> class dll_t {
   // Junio 2024
   dll_t<int> suma(dll_t<int>& A, dll_t<int>& B);
 
-  dll_node_t<T>* erase(dll_node_t<T>*);
+  dll_node_t<T>* erase(dll_node_t<T>* node);
 
   // E/S
   std::ostream& write(std::ostream& = std::cout) const;
 
   dll_node_t<int>* find(const int v);
+
+  // Mis cosas
+  void insert_tail(dll_node_t<T>* node);
 
  private:
   dll_node_t<T>* head_;
@@ -135,22 +138,22 @@ template <class T> dll_node_t<T>* dll_t<T>::pop_front(void) {
   return aux;
 }
 
-template <class T> dll_node_t<T>* dll_t<T>::erase(dll_node_t<T>* nodo) {
-  assert(nodo != NULL);
+// template <class T> dll_node_t<T>* dll_t<T>::erase(dll_node_t<T>* nodo) {
+//   assert(nodo != NULL);
 
-  if (nodo->get_prev() != NULL)
-    nodo->get_prev()->set_next(nodo->get_next());
-  else
-    head_ = nodo->get_next();
-  if (nodo->get_next() != NULL)
-    nodo->get_next()->set_prev(nodo->get_prev());
-  else
-    tail_ = nodo->get_prev();
-  sz_--;
-  nodo->set_prev(NULL);
-  nodo->set_next(NULL);
-  return nodo;
-}
+//   if (nodo->get_prev() != NULL)
+//     nodo->get_prev()->set_next(nodo->get_next());
+//   else
+//     head_ = nodo->get_next();
+//   if (nodo->get_next() != NULL)
+//     nodo->get_next()->set_prev(nodo->get_prev());
+//   else
+//     tail_ = nodo->get_prev();
+//   sz_--;
+//   nodo->set_prev(NULL);
+//   nodo->set_next(NULL);
+//   return nodo;
+// }
 
 // E/S
 template <class T> std::ostream& dll_t<T>::write(std::ostream& os) const {
