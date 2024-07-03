@@ -78,6 +78,19 @@ bool isBalanced(string& cadena) {
 }
 
 // 5. Impleméntese el método int rsearch(int i, int d, const T& x) de la clase vector_t anteriormente especificada, que efectúa la búsqueda lineal recursiva en un vector no ordenado, devolviendo la posición del elemento encontrado y -1 si no lo encuentra.
+template <class T>
+int rsearch(int i, int d, const T& x) {
+  int c = -1;
+  if (i <= d) {
+    c = (i + d) / 2;
+    if (v[c] != x) {
+      const int c1 = rsearch(i + 1, d, x);
+      const int c2 = rsearch(i, d - 1, x);
+      c = max(c1, c2);
+    }
+  }
+}
+
 // 6. Diseñar e implementar una clase, que denominaremos vector_t, que simule el comportamiento de un vector, del tipo especificado por una plantilla, indexado dentro del rango especificado en la definición del objeto. En el siguiente ejemplo se puede apreciar la creación de los objetos v y w, indexados en los rangos especificados en el constructor.
 
 // a) Diseñe la clase vector_t, a partir de los atributos necesarios para el almacenamiento de los datos y el acceso correcto a los mismos utilizando los índices en el rango apropiado.
