@@ -54,6 +54,7 @@ template<class T> class vector_t {
   
   void build(void);
   void destroy(void);
+  int BBR(int i, int d, int x);
 };
 
 

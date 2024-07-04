@@ -51,6 +51,10 @@ private:
   vector_t<T> v_;
   
   int pos(const int, const int) const;
+  int NZND(const double EPS = 1e-10);
+  int MZD(const double EPS = 1e-10);
+  int CountEvenRow();
+  int CountMZColumn(const double EPS = 1e-10);
 };
 
 

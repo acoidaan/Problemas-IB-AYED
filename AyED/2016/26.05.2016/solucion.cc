@@ -122,7 +122,7 @@ int columna_max_DP(void) const {
 
 // a) (2 puntos) Implementar el procedimiento double scalprod(const vector_pair_t& a, const vector_pair_t& b) que devuelve el producto escalar de dos vectores dispersos.
 
-double scalprod(const vector_pait_t& a, const vector_pair_t& b) {
+double scalprod(const vector_pair_t& a, const vector_pair_t& b) {
   const int a_sz = a.get_sz();
   const int b_sz = b.get_sz();
 
@@ -130,7 +130,7 @@ double scalprod(const vector_pait_t& a, const vector_pair_t& b) {
   double scalp = 0.0;
   while((i < a_sz) && (j < b_sz)) {
     const int a_inx = a.get_v(i).get_inx();
-    const int b_inx = b.get_v(i).get_inx();
+    const int b_inx = b.get_v(j).get_inx();
     if (a_inx == b_inx) {
       scalp += a.get_v(i++).get_val() * b.get_v(j++).get_val();
     } else {
