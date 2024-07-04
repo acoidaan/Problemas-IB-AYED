@@ -53,6 +53,7 @@ template <class T> class sll_t {
 
  private:
   sll_node_t<T>* head_;
+  void fusion_asc(sll_t<T>& a, sll_t<T>& b);
 };
 
 
